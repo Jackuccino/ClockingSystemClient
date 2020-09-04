@@ -10,21 +10,34 @@ import SwiftUI
 
 struct ContentView: View {
     
+    @State private var searchText: String = ""
     @ObservedObject var api: Api = Api()
     
     var body: some View {
-        
         NavigationView {
             
-            QGrid(self.api.employees, columns: 5) {
-                AvatarView(employee: $0)
+            VStack {
+                // search bar
+                SearchBar(text: $searchText)
+                
+                // Employee list
+                QGrid(self.api.employees.filter{
+                    self.searchText.isEmpty ? true : $0.employeeFName.lowercased().contains(self.searchText.lowercased())
+                }, columns: 5) {
+                    AvatarView(employee: $0)
+                }
+                .onAppear {
+                    self.api.load()
+                }
             }
+            .navigationBarTitle("King Wah Employees")
+            .navigationBarItems(trailing: Button(action: {
+                print("Hello")
+            }){Text("New")})
             
         }
         .navigationViewStyle(StackNavigationViewStyle())
-        .onAppear {
-            self.api.load()
-        }
+        
     }
 }
 

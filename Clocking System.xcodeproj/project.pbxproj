@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		553FE4182500286600101781 /* GetAvatarImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 553FE4172500286600101781 /* GetAvatarImage.swift */; };
+		553FE41A2500806500101781 /* GetTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 553FE4192500806500101781 /* GetTime.swift */; };
+		553FE41C2500AB6B00101781 /* GetTotalHours.swift in Sources */ = {isa = PBXBuildFile; fileRef = 553FE41B2500AB6B00101781 /* GetTotalHours.swift */; };
 		5561CF3C24FE588E003BDA8C /* Api.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5561CF3B24FE588E003BDA8C /* Api.swift */; };
 		557CE84324F0EDCF006FDDC6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 557CE84224F0EDCF006FDDC6 /* AppDelegate.swift */; };
 		557CE84524F0EDCF006FDDC6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 557CE84424F0EDCF006FDDC6 /* SceneDelegate.swift */; };
@@ -15,12 +18,16 @@
 		557CE84C24F0EDD2006FDDC6 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 557CE84B24F0EDD2006FDDC6 /* Preview Assets.xcassets */; };
 		557CE84F24F0EDD2006FDDC6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 557CE84D24F0EDD2006FDDC6 /* LaunchScreen.storyboard */; };
 		557CE85724F0EEC6006FDDC6 /* EmployeeDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 557CE85624F0EEC6006FDDC6 /* EmployeeDetailView.swift */; };
+		55A8ABDF25022F35008F2977 /* CustomSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55A8ABDE25022F35008F2977 /* CustomSearchBar.swift */; };
 		55ED5F4324F19A1100F93F28 /* QGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55ED5F4224F19A1100F93F28 /* QGrid.swift */; };
 		55ED5F4524F19BE200F93F28 /* AvatarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55ED5F4424F19BE200F93F28 /* AvatarView.swift */; };
 		55ED5F4724F19CFE00F93F28 /* Employee.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55ED5F4624F19CFE00F93F28 /* Employee.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		553FE4172500286600101781 /* GetAvatarImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetAvatarImage.swift; sourceTree = "<group>"; };
+		553FE4192500806500101781 /* GetTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetTime.swift; sourceTree = "<group>"; };
+		553FE41B2500AB6B00101781 /* GetTotalHours.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetTotalHours.swift; sourceTree = "<group>"; };
 		5561CF3B24FE588E003BDA8C /* Api.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Api.swift; sourceTree = "<group>"; };
 		557CE83F24F0EDCF006FDDC6 /* Clocking System.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Clocking System.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		557CE84224F0EDCF006FDDC6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -31,6 +38,7 @@
 		557CE84E24F0EDD2006FDDC6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		557CE85024F0EDD2006FDDC6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		557CE85624F0EEC6006FDDC6 /* EmployeeDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeDetailView.swift; sourceTree = "<group>"; };
+		55A8ABDE25022F35008F2977 /* CustomSearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSearchBar.swift; sourceTree = "<group>"; };
 		55ED5F4224F19A1100F93F28 /* QGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QGrid.swift; sourceTree = "<group>"; };
 		55ED5F4424F19BE200F93F28 /* AvatarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarView.swift; sourceTree = "<group>"; };
 		55ED5F4624F19CFE00F93F28 /* Employee.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Employee.swift; sourceTree = "<group>"; };
@@ -69,11 +77,15 @@
 				557CE84224F0EDCF006FDDC6 /* AppDelegate.swift */,
 				557CE84424F0EDCF006FDDC6 /* SceneDelegate.swift */,
 				557CE84624F0EDCF006FDDC6 /* ContentView.swift */,
+				55A8ABDE25022F35008F2977 /* CustomSearchBar.swift */,
 				557CE85624F0EEC6006FDDC6 /* EmployeeDetailView.swift */,
+				553FE4192500806500101781 /* GetTime.swift */,
+				553FE41B2500AB6B00101781 /* GetTotalHours.swift */,
 				55ED5F4224F19A1100F93F28 /* QGrid.swift */,
 				55ED5F4624F19CFE00F93F28 /* Employee.swift */,
 				5561CF3B24FE588E003BDA8C /* Api.swift */,
 				55ED5F4424F19BE200F93F28 /* AvatarView.swift */,
+				553FE4172500286600101781 /* GetAvatarImage.swift */,
 				557CE84824F0EDD2006FDDC6 /* Assets.xcassets */,
 				557CE84D24F0EDD2006FDDC6 /* LaunchScreen.storyboard */,
 				557CE85024F0EDD2006FDDC6 /* Info.plist */,
@@ -166,8 +178,12 @@
 				55ED5F4324F19A1100F93F28 /* QGrid.swift in Sources */,
 				557CE85724F0EEC6006FDDC6 /* EmployeeDetailView.swift in Sources */,
 				55ED5F4724F19CFE00F93F28 /* Employee.swift in Sources */,
+				55A8ABDF25022F35008F2977 /* CustomSearchBar.swift in Sources */,
 				557CE84524F0EDCF006FDDC6 /* SceneDelegate.swift in Sources */,
 				5561CF3C24FE588E003BDA8C /* Api.swift in Sources */,
+				553FE41A2500806500101781 /* GetTime.swift in Sources */,
+				553FE4182500286600101781 /* GetAvatarImage.swift in Sources */,
+				553FE41C2500AB6B00101781 /* GetTotalHours.swift in Sources */,
 				557CE84724F0EDCF006FDDC6 /* ContentView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
