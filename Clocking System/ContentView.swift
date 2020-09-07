@@ -9,7 +9,6 @@
 import SwiftUI
 
 struct ContentView: View {
-    
     @State private var searchText: String = ""
     @ObservedObject var api: Api = Api()
     
@@ -23,7 +22,7 @@ struct ContentView: View {
                 // Employee list
                 QGrid(self.api.employees.filter{
                     self.searchText.isEmpty ? true : $0.employeeFName.lowercased().contains(self.searchText.lowercased())
-                }, columns: 5) {
+                }, columns: 6, hSpacing: 50) {
                     AvatarView(employee: $0)
                 }
                 .onAppear {

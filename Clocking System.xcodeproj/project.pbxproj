@@ -7,9 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		553F07D42505F41C00062488 /* Clocking_System.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 553F07D22505F41C00062488 /* Clocking_System.xcdatamodeld */; };
 		553FE4182500286600101781 /* GetAvatarImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 553FE4172500286600101781 /* GetAvatarImage.swift */; };
-		553FE41A2500806500101781 /* GetTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 553FE4192500806500101781 /* GetTime.swift */; };
-		553FE41C2500AB6B00101781 /* GetTotalHours.swift in Sources */ = {isa = PBXBuildFile; fileRef = 553FE41B2500AB6B00101781 /* GetTotalHours.swift */; };
+		553FE41A2500806500101781 /* CurrentTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 553FE4192500806500101781 /* CurrentTime.swift */; };
+		553FE41C2500AB6B00101781 /* WorkTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 553FE41B2500AB6B00101781 /* WorkTime.swift */; };
 		5561CF3C24FE588E003BDA8C /* Api.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5561CF3B24FE588E003BDA8C /* Api.swift */; };
 		557CE84324F0EDCF006FDDC6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 557CE84224F0EDCF006FDDC6 /* AppDelegate.swift */; };
 		557CE84524F0EDCF006FDDC6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 557CE84424F0EDCF006FDDC6 /* SceneDelegate.swift */; };
@@ -25,9 +26,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		553F07D32505F41C00062488 /* Clocking_System.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Clocking_System.xcdatamodel; sourceTree = "<group>"; };
 		553FE4172500286600101781 /* GetAvatarImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetAvatarImage.swift; sourceTree = "<group>"; };
-		553FE4192500806500101781 /* GetTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetTime.swift; sourceTree = "<group>"; };
-		553FE41B2500AB6B00101781 /* GetTotalHours.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetTotalHours.swift; sourceTree = "<group>"; };
+		553FE4192500806500101781 /* CurrentTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentTime.swift; sourceTree = "<group>"; };
+		553FE41B2500AB6B00101781 /* WorkTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkTime.swift; sourceTree = "<group>"; };
 		5561CF3B24FE588E003BDA8C /* Api.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Api.swift; sourceTree = "<group>"; };
 		557CE83F24F0EDCF006FDDC6 /* Clocking System.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Clocking System.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		557CE84224F0EDCF006FDDC6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -79,8 +81,8 @@
 				557CE84624F0EDCF006FDDC6 /* ContentView.swift */,
 				55A8ABDE25022F35008F2977 /* CustomSearchBar.swift */,
 				557CE85624F0EEC6006FDDC6 /* EmployeeDetailView.swift */,
-				553FE4192500806500101781 /* GetTime.swift */,
-				553FE41B2500AB6B00101781 /* GetTotalHours.swift */,
+				553FE4192500806500101781 /* CurrentTime.swift */,
+				553FE41B2500AB6B00101781 /* WorkTime.swift */,
 				55ED5F4224F19A1100F93F28 /* QGrid.swift */,
 				55ED5F4624F19CFE00F93F28 /* Employee.swift */,
 				5561CF3B24FE588E003BDA8C /* Api.swift */,
@@ -89,6 +91,7 @@
 				557CE84824F0EDD2006FDDC6 /* Assets.xcassets */,
 				557CE84D24F0EDD2006FDDC6 /* LaunchScreen.storyboard */,
 				557CE85024F0EDD2006FDDC6 /* Info.plist */,
+				553F07D22505F41C00062488 /* Clocking_System.xcdatamodeld */,
 				557CE84A24F0EDD2006FDDC6 /* Preview Content */,
 			);
 			path = "Clocking System";
@@ -178,12 +181,13 @@
 				55ED5F4324F19A1100F93F28 /* QGrid.swift in Sources */,
 				557CE85724F0EEC6006FDDC6 /* EmployeeDetailView.swift in Sources */,
 				55ED5F4724F19CFE00F93F28 /* Employee.swift in Sources */,
+				553F07D42505F41C00062488 /* Clocking_System.xcdatamodeld in Sources */,
 				55A8ABDF25022F35008F2977 /* CustomSearchBar.swift in Sources */,
 				557CE84524F0EDCF006FDDC6 /* SceneDelegate.swift in Sources */,
 				5561CF3C24FE588E003BDA8C /* Api.swift in Sources */,
-				553FE41A2500806500101781 /* GetTime.swift in Sources */,
+				553FE41A2500806500101781 /* CurrentTime.swift in Sources */,
 				553FE4182500286600101781 /* GetAvatarImage.swift in Sources */,
-				553FE41C2500AB6B00101781 /* GetTotalHours.swift in Sources */,
+				553FE41C2500AB6B00101781 /* WorkTime.swift in Sources */,
 				557CE84724F0EDCF006FDDC6 /* ContentView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -332,7 +336,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.kingwahrestaurant.Clocking-System";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Debug;
 		};
@@ -352,7 +356,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.kingwahrestaurant.Clocking-System";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Release;
 		};
@@ -378,6 +382,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		553F07D22505F41C00062488 /* Clocking_System.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				553F07D32505F41C00062488 /* Clocking_System.xcdatamodel */,
+			);
+			currentVersion = 553F07D32505F41C00062488 /* Clocking_System.xcdatamodel */;
+			path = Clocking_System.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 557CE83724F0EDCF006FDDC6 /* Project object */;
 }

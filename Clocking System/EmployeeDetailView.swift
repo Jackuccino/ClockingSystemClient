@@ -10,6 +10,8 @@ import SwiftUI
 
 struct EmployeeDetailView: View {
     var employee: Employee
+    
+    var currentTime: CurrentTime = CurrentTime()
     @ObservedObject var api: Api = Api()
     @State var clocking_status: Bool
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
@@ -20,6 +22,8 @@ struct EmployeeDetailView: View {
             
             HStack (alignment: .center, spacing: 100) {
                 VStack {
+                    
+                    
                     // top left - avatar
                     safeImage(named: self.employee.employeeFName)
                         .resizable()
@@ -39,9 +43,12 @@ struct EmployeeDetailView: View {
                 // top right - information
                 VStack (alignment: .leading, spacing: 30) {
                     
+                    Text(self.employee.employeeFName + " " + self.employee.employeeLName)
+                        .font(.system(size: 50))
+                    
                     HStack (alignment: .top, spacing: 0) {
                         Text("Last clock-in time:\t")
-                        self.clocking_status ? Text("N/A") : Text(String(format: "%02d:%02d", self.employee.startHour, self.employee.startMinute))
+                        self.clocking_status ? Text("N/A") : Text(self.currentTime.getDate())
                     }
                     Text("Total hours:\t\t\t\(self.employee.totalHours)")
                     Text("Extra minutes:\t\t\(self.employee.extraMinutes)")
@@ -58,8 +65,8 @@ struct EmployeeDetailView: View {
             self.clocking_status ?
                 Button(action: {
                     
-                    self.employee.startHour = CurrentTime().getHour()
-                    self.employee.startMinute = CurrentTime().getMinute()
+                    self.employee.startHour = self.currentTime.getHour()
+                    self.employee.startMinute = self.currentTime.getMinute()
                     
                     // clock in
                     self.api.clockIn(employee: self.employee)
@@ -93,8 +100,7 @@ struct EmployeeDetailView: View {
                     .fontWeight(.bold)
                     .font(.title)
                     .padding()
-                    .background(Color.blue)
-                    //.background(LinearGradient(gradient: Gradient(colors: [Color.blue, Color.green]), startPoint: .leading, endPoint: .trailing))
+                    .background(Color.blue)                    //.background(LinearGradient(gradient: Gradient(colors: [Color.blue, Color.green]), startPoint: .leading, endPoint: .trailing))
                     .cornerRadius(40)
                     .foregroundColor(.white)
                     .padding(10)
@@ -104,7 +110,6 @@ struct EmployeeDetailView: View {
             Spacer()
         }
         .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .center)
-        .navigationBarTitle(self.employee.employeeFName + " " + self.employee.employeeLName)
     }
 }
 

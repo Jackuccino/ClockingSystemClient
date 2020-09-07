@@ -21,7 +21,7 @@ struct AvatarView: View {
                     .clipShape(Circle())
                     .shadow(color: .primary, radius: 5)
                     .padding([.horizontal, .top], 7)
-                    .frame(width: 150, height: 150, alignment: Alignment.center)
+                    //.frame(width: 150, height: 150, alignment: Alignment.center)
             }.buttonStyle(PlainButtonStyle())
             Text(employee.employeeFName).lineLimit(1)
             Text(employee.employeeLName).lineLimit(1)

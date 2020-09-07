@@ -19,22 +19,13 @@ public class Api: ObservableObject {
     
     func load() {
                 
-        guard let url = URL(string: "http://\(ProcessInfo.processInfo.environment["ip_address"] ?? "localhost:5000"):8081/api/employees") else { return }
+        guard let url = URL(string: "http://66.190.224.156:8081/api/employees") else { return }
         
         URLSession.shared.dataTask(with: url) { (data, res, err) in
             guard let data = data else { return }
             let emps = try! JSONDecoder().decode(EmployeeList.self, from: data)
             
             DispatchQueue.main.async {
-                
-//                if (!emps.employees.isEmpty && !self.employees.isEmpty && Employee.isEqual(lhs: self.employees[0], rhs: emps.employees[0]))
-//                {
-//                    print("same")
-//                }
-//                else
-//                {
-//                    print("not same")
-//                }
                 
                 self.employees = emps.employees.sorted(by: { $0.id > $1.id })
                 
@@ -56,7 +47,7 @@ public class Api: ObservableObject {
         // make json
         guard let jsonData = try? JSONSerialization.data(withJSONObject: json) else { return }
         
-        sendPatchRequest(url_string: "http://\(ProcessInfo.processInfo.environment["ip_address"] ?? "localhost:5000"):8081/api/employees/clock-in", data: jsonData)
+        sendPatchRequest(url_string: "http://66.190.224.156:8081/api/employees/clock-in", data: jsonData)
     }
     
     func clockOut(employee: Employee) {
@@ -70,7 +61,7 @@ public class Api: ObservableObject {
         // make json
         guard let jsonData = try? JSONSerialization.data(withJSONObject: json) else { return }
         
-        sendPatchRequest(url_string: "http://\(ProcessInfo.processInfo.environment["ip_address"] ?? "localhost:5000"):8081/api/employees/clock-out", data: jsonData)
+        sendPatchRequest(url_string: "http://66.190.224.156:8081/api/employees/clock-out", data: jsonData)
     }
     
     private func sendPatchRequest(url_string: String, data: Data) {

@@ -44,4 +44,13 @@ class WorkTime {
         
         return (Int(extra_hours), Int(extra_minutes))
     }
+    
+//    func getWorkHours(employee: Employee) -> Double {
+//        let calendar = Calendar.current
+//        let clockInTime = employee.clockInTime
+//        let clockOutTime = Date()
+//        let components = calendar.dateComponents([.minute], from: clockInTime, to: clockOutTime)
+//        let diff = components.minute!
+//        return Double(diff) / 60.0
+//    }
 }
