@@ -7,33 +7,37 @@
 //
 
 import SwiftUI
+import CoreData
 
 struct ContentView: View {
+    
     @State private var searchText: String = ""
-    @ObservedObject var api: Api = Api()
+    @State private var showCreateEmployee: Bool = false
+    @ObservedObject var coreDataApi: CoreDataApi = CoreDataApi()
     
     var body: some View {
         NavigationView {
-            
             VStack {
                 // search bar
                 SearchBar(text: $searchText)
                 
                 // Employee list
-                QGrid(self.api.employees.filter{
-                    self.searchText.isEmpty ? true : $0.employeeFName.lowercased().contains(self.searchText.lowercased())
+                QGrid(self.coreDataApi.employees.filter{
+                    self.searchText.isEmpty ? true : $0.firstName.lowercased().contains(self.searchText.lowercased())
                 }, columns: 6, hSpacing: 50) {
-                    AvatarView(employee: $0)
-                }
-                .onAppear {
-                    self.api.load()
+                    AvatarView(employee: $0, coreDataApi: self.coreDataApi)
                 }
             }
             .navigationBarTitle("King Wah Employees")
             .navigationBarItems(trailing: Button(action: {
-                print("Hello")
-            }){Text("New")})
-            
+                // create alert for new employee
+                self.showCreateEmployee = true
+            }){
+                Image(systemName: "plus.circle").font(.system(size: 25))
+            }
+            .sheet(isPresented: self.$showCreateEmployee, content: {
+                CreateEmployee(coreDataApi: self.coreDataApi)
+            }))
         }
         .navigationViewStyle(StackNavigationViewStyle())
         

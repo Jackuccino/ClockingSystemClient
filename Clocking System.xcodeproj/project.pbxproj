@@ -7,11 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		550338F92507236200776258 /* CreateEmployee.swift in Sources */ = {isa = PBXBuildFile; fileRef = 550338F82507236200776258 /* CreateEmployee.swift */; };
+		5503391025077E5F00776258 /* Employee+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5503390E25077E5F00776258 /* Employee+CoreDataClass.swift */; };
+		5503391125077E5F00776258 /* Employee+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5503390F25077E5F00776258 /* Employee+CoreDataProperties.swift */; };
+		550339132507811100776258 /* LettersOnly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 550339122507811100776258 /* LettersOnly.swift */; };
 		553F07D42505F41C00062488 /* Clocking_System.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 553F07D22505F41C00062488 /* Clocking_System.xcdatamodeld */; };
+		553F07DD250619CC00062488 /* CoreDataApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 553F07DC250619CC00062488 /* CoreDataApi.swift */; };
 		553FE4182500286600101781 /* GetAvatarImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 553FE4172500286600101781 /* GetAvatarImage.swift */; };
-		553FE41A2500806500101781 /* CurrentTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 553FE4192500806500101781 /* CurrentTime.swift */; };
-		553FE41C2500AB6B00101781 /* WorkTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 553FE41B2500AB6B00101781 /* WorkTime.swift */; };
-		5561CF3C24FE588E003BDA8C /* Api.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5561CF3B24FE588E003BDA8C /* Api.swift */; };
+		553FE41A2500806500101781 /* Time.swift in Sources */ = {isa = PBXBuildFile; fileRef = 553FE4192500806500101781 /* Time.swift */; };
 		557CE84324F0EDCF006FDDC6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 557CE84224F0EDCF006FDDC6 /* AppDelegate.swift */; };
 		557CE84524F0EDCF006FDDC6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 557CE84424F0EDCF006FDDC6 /* SceneDelegate.swift */; };
 		557CE84724F0EDCF006FDDC6 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 557CE84624F0EDCF006FDDC6 /* ContentView.swift */; };
@@ -22,15 +25,17 @@
 		55A8ABDF25022F35008F2977 /* CustomSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55A8ABDE25022F35008F2977 /* CustomSearchBar.swift */; };
 		55ED5F4324F19A1100F93F28 /* QGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55ED5F4224F19A1100F93F28 /* QGrid.swift */; };
 		55ED5F4524F19BE200F93F28 /* AvatarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55ED5F4424F19BE200F93F28 /* AvatarView.swift */; };
-		55ED5F4724F19CFE00F93F28 /* Employee.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55ED5F4624F19CFE00F93F28 /* Employee.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		550338F82507236200776258 /* CreateEmployee.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateEmployee.swift; sourceTree = "<group>"; };
+		5503390E25077E5F00776258 /* Employee+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Employee+CoreDataClass.swift"; sourceTree = "<group>"; };
+		5503390F25077E5F00776258 /* Employee+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Employee+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		550339122507811100776258 /* LettersOnly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LettersOnly.swift; sourceTree = "<group>"; };
 		553F07D32505F41C00062488 /* Clocking_System.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Clocking_System.xcdatamodel; sourceTree = "<group>"; };
+		553F07DC250619CC00062488 /* CoreDataApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataApi.swift; sourceTree = "<group>"; };
 		553FE4172500286600101781 /* GetAvatarImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetAvatarImage.swift; sourceTree = "<group>"; };
-		553FE4192500806500101781 /* CurrentTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentTime.swift; sourceTree = "<group>"; };
-		553FE41B2500AB6B00101781 /* WorkTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkTime.swift; sourceTree = "<group>"; };
-		5561CF3B24FE588E003BDA8C /* Api.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Api.swift; sourceTree = "<group>"; };
+		553FE4192500806500101781 /* Time.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Time.swift; sourceTree = "<group>"; };
 		557CE83F24F0EDCF006FDDC6 /* Clocking System.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Clocking System.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		557CE84224F0EDCF006FDDC6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		557CE84424F0EDCF006FDDC6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -43,7 +48,6 @@
 		55A8ABDE25022F35008F2977 /* CustomSearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSearchBar.swift; sourceTree = "<group>"; };
 		55ED5F4224F19A1100F93F28 /* QGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QGrid.swift; sourceTree = "<group>"; };
 		55ED5F4424F19BE200F93F28 /* AvatarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarView.swift; sourceTree = "<group>"; };
-		55ED5F4624F19CFE00F93F28 /* Employee.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Employee.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +61,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		553F07D9250612C700062488 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				5503390E25077E5F00776258 /* Employee+CoreDataClass.swift */,
+				5503390F25077E5F00776258 /* Employee+CoreDataProperties.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		557CE83624F0EDCF006FDDC6 = {
 			isa = PBXGroup;
 			children = (
@@ -76,16 +89,17 @@
 		557CE84124F0EDCF006FDDC6 /* Clocking System */ = {
 			isa = PBXGroup;
 			children = (
+				553F07D9250612C700062488 /* Model */,
 				557CE84224F0EDCF006FDDC6 /* AppDelegate.swift */,
 				557CE84424F0EDCF006FDDC6 /* SceneDelegate.swift */,
 				557CE84624F0EDCF006FDDC6 /* ContentView.swift */,
 				55A8ABDE25022F35008F2977 /* CustomSearchBar.swift */,
 				557CE85624F0EEC6006FDDC6 /* EmployeeDetailView.swift */,
-				553FE4192500806500101781 /* CurrentTime.swift */,
-				553FE41B2500AB6B00101781 /* WorkTime.swift */,
+				550338F82507236200776258 /* CreateEmployee.swift */,
+				550339122507811100776258 /* LettersOnly.swift */,
+				553FE4192500806500101781 /* Time.swift */,
 				55ED5F4224F19A1100F93F28 /* QGrid.swift */,
-				55ED5F4624F19CFE00F93F28 /* Employee.swift */,
-				5561CF3B24FE588E003BDA8C /* Api.swift */,
+				553F07DC250619CC00062488 /* CoreDataApi.swift */,
 				55ED5F4424F19BE200F93F28 /* AvatarView.swift */,
 				553FE4172500286600101781 /* GetAvatarImage.swift */,
 				557CE84824F0EDD2006FDDC6 /* Assets.xcassets */,
@@ -180,15 +194,17 @@
 				55ED5F4524F19BE200F93F28 /* AvatarView.swift in Sources */,
 				55ED5F4324F19A1100F93F28 /* QGrid.swift in Sources */,
 				557CE85724F0EEC6006FDDC6 /* EmployeeDetailView.swift in Sources */,
-				55ED5F4724F19CFE00F93F28 /* Employee.swift in Sources */,
 				553F07D42505F41C00062488 /* Clocking_System.xcdatamodeld in Sources */,
 				55A8ABDF25022F35008F2977 /* CustomSearchBar.swift in Sources */,
+				553F07DD250619CC00062488 /* CoreDataApi.swift in Sources */,
 				557CE84524F0EDCF006FDDC6 /* SceneDelegate.swift in Sources */,
-				5561CF3C24FE588E003BDA8C /* Api.swift in Sources */,
-				553FE41A2500806500101781 /* CurrentTime.swift in Sources */,
+				550339132507811100776258 /* LettersOnly.swift in Sources */,
+				553FE41A2500806500101781 /* Time.swift in Sources */,
+				5503391025077E5F00776258 /* Employee+CoreDataClass.swift in Sources */,
 				553FE4182500286600101781 /* GetAvatarImage.swift in Sources */,
-				553FE41C2500AB6B00101781 /* WorkTime.swift in Sources */,
+				550338F92507236200776258 /* CreateEmployee.swift in Sources */,
 				557CE84724F0EDCF006FDDC6 /* ContentView.swift in Sources */,
+				5503391125077E5F00776258 /* Employee+CoreDataProperties.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

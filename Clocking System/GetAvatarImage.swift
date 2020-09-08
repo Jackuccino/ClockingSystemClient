@@ -9,6 +9,6 @@
 import SwiftUI
 
 func safeImage(named: String) -> Image {
-    let image = (UIImage(named: named.lowercased()) ?? UIImage(named: "default-avatar"))!
+    let image = (UIImage(named: named.isEmpty ? "default-avatar" : named.lowercased()) ?? UIImage(named: "default-avatar"))!
     return Image(uiImage: image)
 }

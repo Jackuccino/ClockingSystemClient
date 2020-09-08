@@ -10,10 +10,11 @@ import SwiftUI
 
 struct EmployeeDetailView: View {
     var employee: Employee
+    //@State var clocking_status: Bool
     
-    var currentTime: CurrentTime = CurrentTime()
-    @ObservedObject var api: Api = Api()
-    @State var clocking_status: Bool
+    var time: Time = Time()
+    @State private var showAlert: Bool = false
+    @ObservedObject var coreDataApi: CoreDataApi
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
     var body: some View {
@@ -23,9 +24,8 @@ struct EmployeeDetailView: View {
             HStack (alignment: .center, spacing: 100) {
                 VStack {
                     
-                    
                     // top left - avatar
-                    safeImage(named: self.employee.employeeFName)
+                    safeImage(named: self.employee.firstName)
                         .resizable()
                         .scaledToFit()
                         .clipShape(Circle())
@@ -33,28 +33,31 @@ struct EmployeeDetailView: View {
                         .padding([.top, .leading, .trailing], 7)
                         .frame(width: 200, height: 200)
                     
-                    Button(action: {
-                        print("hello")
-                    }) { Text("Edit")
-                        
-                    }
+                    /*Button(action: {
+                     print("hello")
+                     }) { Text("Edit")
+                     
+                     }*/
                 }
                 
                 // top right - information
                 VStack (alignment: .leading, spacing: 30) {
                     
-                    Text(self.employee.employeeFName + " " + self.employee.employeeLName)
+                    Text(self.employee.firstName + " " + self.employee.lastName)
                         .font(.system(size: 50))
                     
                     HStack (alignment: .top, spacing: 0) {
-                        Text("Last clock-in time:\t")
-                        self.clocking_status ? Text("N/A") : Text(self.currentTime.getDate())
+                        Text("Last clock-in time:\t\t")
+                        (self.employee.clockInTime == nil) ? Text("N/A") : Text(self.time.getDate(date: self.employee.clockInTime!))
                     }
-                    Text("Total hours:\t\t\t\(self.employee.totalHours)")
-                    Text("Extra minutes:\t\t\(self.employee.extraMinutes)")
+                    HStack (alignment: .top, spacing: 0) {
+                        Text("Last clock-out time:\t")
+                        (self.employee.clockOutTime == nil) ? Text("N/A") : Text(self.time.getDate(date: self.employee.clockOutTime!))
+                    }
+                    Text("Total hours:\t\t\t\t\(self.employee.totalHours)")
+                    Text("Extra minutes:\t\t\t\(self.employee.extraMinutes)")
                 }.font(.system(size: 20))
             }
-            
             
             Spacer()
             Spacer()
@@ -62,39 +65,25 @@ struct EmployeeDetailView: View {
             Spacer()
             
             // bottom - button
-            self.clocking_status ?
-                Button(action: {
-                    
-                    self.employee.startHour = self.currentTime.getHour()
-                    self.employee.startMinute = self.currentTime.getMinute()
-                    
-                    // clock in
-                    self.api.clockIn(employee: self.employee)
-                    
-                    self.clocking_status.toggle()
-                    
-                }){ Text("Clock in")
-                    .fontWeight(.bold)
-                    .font(.title)
-                    .padding()
-                    .background(Color.green)
-                    //.background(LinearGradient(gradient: Gradient(colors: [Color.green, Color.blue]), startPoint: .leading, endPoint: .trailing))
-                    .cornerRadius(40)
-                    .foregroundColor(.white)
-                    .padding(10)
+            !self.employee.clockingStatus ? Button(action: {
+                
+                // clock in
+                self.coreDataApi.clockIn(employee: self.employee)
+                
+            }){ Text("Clock in")
+                .fontWeight(.bold)
+                .font(.title)
+                .padding()
+                .background(Color.green)
+                //.background(LinearGradient(gradient: Gradient(colors: [Color.green, Color.blue]), startPoint: .leading, endPoint: .trailing))
+                .cornerRadius(40)
+                .foregroundColor(.white)
+                .padding(10)
                 }
-                :
-                Button(action: {
-                    
-                    let (finalHours, extraMinutes) = WorkTime().getWorkTime(employee: self.employee)
-                    
-                    self.employee.totalHours = finalHours
-                    self.employee.extraMinutes = extraMinutes
+                : Button(action: {
                     
                     // clock out
-                    self.api.clockOut(employee: self.employee)
-                    
-                    self.clocking_status.toggle()
+                    self.coreDataApi.clockOut(employee: self.employee)
                     
                 }){ Text("Clock out")
                     .fontWeight(.bold)
@@ -110,11 +99,22 @@ struct EmployeeDetailView: View {
             Spacer()
         }
         .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .center)
-    }
-}
-
-struct EmployeeDetailView_Previews: PreviewProvider {
-    static var previews: some View {
-        EmployeeDetailView(employee: Employee(id: 0, employeeFName: "123", employeeLName: "456", startHour: 0, startMinute: 0, totalHours: 0, extraMinutes: 0), clocking_status: true)
+        .navigationBarItems(trailing: Button(action: {
+            // delete employee alert
+            self.showAlert = true
+        }){
+            Image(systemName: "trash.circle").font(.system(size: 25)).foregroundColor(.red)
+        })
+            .alert(isPresented: $showAlert) { () -> Alert in
+                Alert(title: Text("Delete \(self.employee.firstName) \(self.employee.lastName)"), message: nil, primaryButton: .destructive(Text("Confirm"), action: {
+                    
+                    // all api to delete employee
+                    self.coreDataApi.deleteEmployees(employee: self.employee)
+                    
+                    // dismiss alert
+                    self.presentationMode.wrappedValue.dismiss()
+                    
+                }), secondaryButton: .cancel())
+        }
     }
 }

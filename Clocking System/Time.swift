@@ -18,28 +18,29 @@ class Time {
         }
         
         self.formatter.dateStyle = .short
-        self.formatter.timeStyle = .short
+        self.formatter.timeStyle = .medium
         self.formatter.locale = Locale(identifier: "en_US")
         if let timeZone = TimeZone(identifier: "PST") {
             self.formatter.timeZone = timeZone
         }
     }
     
-    func getHour() -> Int {
-        let date = Date()
-        return calendar.component(.hour, from: date)
-    }
-    
-    func getMinute() -> Int {
-        let date = Date()
-        return calendar.component(.minute, from: date)
-    }
-    
     func getDate(date: Date) -> String {
         return formatter.string(from: date)
     }
     
-    func minutesToHours(minutes: Int) -> Double {
+    func minuteToHour(minutes: Int) -> Double {
         return Double(minutes) / 60.0
+    }
+    
+    func minuteToHourMinute(minute: Int) -> (Int, Int){
+        // Get the extra hour integer by using floor
+        let hour = floor(Double(minute) / 60.0)
+        
+        // Get the minute
+        let hourInDecimal = Double(minute) / 60.0
+        let newMinute = round((hourInDecimal - hour) * 60.0)
+        
+        return (Int(hour), Int(newMinute))
     }
 }
