@@ -13,16 +13,10 @@ class Time {
     private var formatter: DateFormatter = DateFormatter()
     
     init() {
-        if let timeZone = TimeZone(identifier: "PST") {
-            self.calendar.timeZone = timeZone
-        }
-        
+        // date style .short displays 9/8/2020 for example
         self.formatter.dateStyle = .short
+        // time style .medium displays 10:05:31 PM for example
         self.formatter.timeStyle = .medium
-        self.formatter.locale = Locale(identifier: "en_US")
-        if let timeZone = TimeZone(identifier: "PST") {
-            self.formatter.timeZone = timeZone
-        }
     }
     
     func getDate(date: Date) -> String {
