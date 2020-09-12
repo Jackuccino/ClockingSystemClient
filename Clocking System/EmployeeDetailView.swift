@@ -10,10 +10,13 @@ import SwiftUI
 
 struct EmployeeDetailView: View {
     var employee: Employee
-    //@State var clocking_status: Bool
+    @State var image: UIImage?
     
     var time: Time = Time()
-    @State private var showAlert: Bool = false
+    @State private var showDelete: Bool = false
+    @State private var showForgot: Bool = false
+    @State private var showEditPicture: Bool = false
+    @State private var deleted: Bool = false
     @ObservedObject var coreDataApi: CoreDataApi
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
@@ -25,19 +28,36 @@ struct EmployeeDetailView: View {
                 VStack {
                     
                     // top left - avatar
-                    safeImage(named: self.employee.firstName)
+                    Image(uiImage: image ?? (UIImage(data: (self.employee.avatar ?? UIImage(named: "default-avatar")!.jpegData(compressionQuality: 1.0))!)!))
                         .resizable()
-                        .scaledToFit()
+                        .aspectRatio(contentMode: .fill)
                         .clipShape(Circle())
                         .shadow(color: .primary, radius: 5)
                         .padding([.top, .leading, .trailing], 7)
-                        .frame(width: 200, height: 200)
-                    
-                    /*Button(action: {
-                     print("hello")
-                     }) { Text("Edit")
-                     
-                     }*/
+                        .frame(width: 250, height: 250)
+                        .overlay(
+                                Button(action: {
+                                    // Choose Camera or library sheet
+                                    self.showEditPicture = true
+                                    
+                                    // Dismiss keyboard
+                                    UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+                                }){
+                                    Image(systemName: "camera.on.rectangle")
+                                        .font(.system(size: 20))
+                                        .padding()
+                                        .foregroundColor(Color.gray)
+                                        .background(Color.white)
+                                        .clipShape(Circle())
+                                }
+                                .buttonStyle(PlainButtonStyle())
+                                .popover(isPresented: self.$showEditPicture) {
+                                    //
+                                    ChoosePicturePopover(image: self.$image)
+                                }
+                                
+                                , alignment: .bottomTrailing
+                        )
                 }
                 
                 // top right - information
@@ -62,7 +82,6 @@ struct EmployeeDetailView: View {
             Spacer()
             Spacer()
             Spacer()
-            Spacer()
             
             // bottom - button
             !self.employee.clockingStatus ? Button(action: {
@@ -75,7 +94,6 @@ struct EmployeeDetailView: View {
                 .font(.title)
                 .padding()
                 .background(Color.green)
-                //.background(LinearGradient(gradient: Gradient(colors: [Color.green, Color.blue]), startPoint: .leading, endPoint: .trailing))
                 .cornerRadius(40)
                 .foregroundColor(.white)
                 .padding(10)
@@ -89,7 +107,7 @@ struct EmployeeDetailView: View {
                     .fontWeight(.bold)
                     .font(.title)
                     .padding()
-                    .background(Color.blue)                    //.background(LinearGradient(gradient: Gradient(colors: [Color.blue, Color.green]), startPoint: .leading, endPoint: .trailing))
+                    .background(Color.blue)
                     .cornerRadius(40)
                     .foregroundColor(.white)
                     .padding(10)
@@ -97,24 +115,46 @@ struct EmployeeDetailView: View {
             
             Spacer()
             Spacer()
+            
+            Button(action: {
+                // show forgot alert
+                self.showForgot = true
+            }){
+                Text("Forgot to clock in or clock out?")
+            }
+            .sheet(isPresented: self.$showForgot) {
+                // Pop up sheet to add work time manually
+                ChangeTotalHours(employee: self.employee, coreDataApi: self.coreDataApi)
+            }
+            
+            Spacer()
         }
         .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .center)
+        .onDisappear() {
+            // Save context if avatar got changed
+            if (self.image != nil) && (!self.deleted) {
+                self.coreDataApi.saveAvatar(employee: self.employee, avatar: self.image!)
+            }
+        }
         .navigationBarItems(trailing: Button(action: {
             // delete employee alert
-            self.showAlert = true
+            self.showDelete = true
         }){
             Image(systemName: "trash.circle").font(.system(size: 25)).foregroundColor(.red)
         })
-            .alert(isPresented: $showAlert) { () -> Alert in
-                Alert(title: Text("Delete \(self.employee.firstName) \(self.employee.lastName)"), message: nil, primaryButton: .destructive(Text("Confirm"), action: {
-                    
-                    // all api to delete employee
-                    self.coreDataApi.deleteEmployees(employee: self.employee)
-                    
-                    // dismiss alert
-                    self.presentationMode.wrappedValue.dismiss()
-                    
-                }), secondaryButton: .cancel())
+        .alert(isPresented: self.$showDelete) { () -> Alert in
+            Alert(title: Text("Delete employee"), message: Text("\(self.employee.firstName) \(self.employee.lastName)"), primaryButton: .destructive(Text("Yes"), action: {
+                
+                // all api to delete employee
+                self.coreDataApi.deleteEmployees(employee: self.employee)
+                
+                // set deleted flag
+                self.deleted = true
+                
+                // dismiss alert
+                self.presentationMode.wrappedValue.dismiss()
+                
+            }), secondaryButton: .cancel(Text("No")))
         }
     }
 }

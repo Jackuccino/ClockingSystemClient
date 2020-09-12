@@ -11,7 +11,7 @@ import SwiftUI
 class LettersOnly: ObservableObject {
     @Published var firstName = "" {
         didSet {
-            let filtered = firstName.filter { $0.isLetter }
+            let filtered = firstName.filter { $0.isLetter || $0.isWhitespace }
             if firstName != filtered {
                 firstName = filtered
             }
@@ -20,7 +20,7 @@ class LettersOnly: ObservableObject {
     
     @Published var lastName: String = "" {
         didSet {
-            let filtered = lastName.filter { $0.isLetter }
+            let filtered = lastName.filter { $0.isLetter || $0.isWhitespace }
             if lastName != filtered {
                 lastName = filtered
             }

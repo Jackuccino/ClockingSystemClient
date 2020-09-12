@@ -40,7 +40,7 @@ class CoreDataApi: ObservableObject {
         }
     }
     
-    func createEmployee(firstName: String, lastName: String) {
+    func createEmployee(firstName: String, lastName: String, totalHours: String, extraMinutes: String, avatar: UIImage) {
         
         // Create a employee object
         let newEmployee = Employee(context: self.context)
@@ -48,7 +48,10 @@ class CoreDataApi: ObservableObject {
         newEmployee.lastName = lastName
         newEmployee.clockInTime = nil
         newEmployee.clockOutTime = nil
-        
+        newEmployee.totalHours = Int64(Int(totalHours) ?? 0)
+        newEmployee.extraMinutes = Int64(Int(extraMinutes) ?? 0)
+        newEmployee.avatar = avatar.jpegData(compressionQuality: 1.0)
+
         // Save the data
         do {
             try self.context.save()
@@ -59,6 +62,18 @@ class CoreDataApi: ObservableObject {
         
         // reload employees
         self.loadEmployees()
+    }
+    
+    // This function is to rotate png pictures
+    func rotateImage(image: UIImage) -> UIImage? {
+        if (image.imageOrientation == UIImage.Orientation.up ) {
+            return image
+        }
+        UIGraphicsBeginImageContext(image.size)
+        image.draw(in: CGRect(origin: CGPoint.zero, size: image.size))
+        let copy = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return copy
     }
     
     func clockIn(employee: Employee) {
@@ -88,14 +103,84 @@ class CoreDataApi: ObservableObject {
         
         // Calculate work time
         let components = Calendar.current.dateComponents([.minute], from: employee.clockInTime!, to: employee.clockOutTime!)
-        let (hour, minute) = Time().minuteToHourMinute(minute: components.minute!)
-        employee.totalHours += Int64(hour)
-        employee.extraMinutes += Int64(minute)
-                
+        employee.extraMinutes += Int64(components.minute!)
+        
+        if employee.extraMinutes >= 60 {
+            let (hour, minute) = Time().minuteToHourMinute(minute: Int(employee.extraMinutes))
+            employee.totalHours += Int64(hour)
+            employee.extraMinutes = Int64(minute)
+        }
+            
         // Set clocking status to false
         employee.clockingStatus = false
         
         // Save changes
+        do {
+            try self.context.save()
+        } catch {
+            // Handle save failure
+            print(error)
+        }
+        
+        // reload employees
+        self.loadEmployees()
+    }
+    
+    func addWorkTime(employee: Employee, newTotalHours: Int, newExtraMinutes: Int) {
+        // Set new total hours and new extra minutes
+        employee.totalHours += Int64(newTotalHours)
+        employee.extraMinutes += Int64(newExtraMinutes)
+        
+        if employee.extraMinutes >= 60 {
+            let (hour, minute) = Time().minuteToHourMinute(minute: Int(employee.extraMinutes))
+            employee.totalHours += Int64(hour)
+            employee.extraMinutes = Int64(minute)
+        }
+        
+        // Either forgot to clock in or out, the next time
+        // the user uses it must be clock-in
+        employee.clockingStatus = false
+        
+        // Save changes
+        do {
+            try self.context.save()
+        } catch {
+            // Handle save failure
+            print(error)
+        }
+        
+        // reload employees
+        self.loadEmployees()
+    }
+    
+    func saveAvatar(employee: Employee, avatar: UIImage) {
+        
+        // Save avatar data
+        employee.avatar = avatar.jpegData(compressionQuality: 1.0)
+        
+        // Save the data
+        do {
+            try self.context.save()
+        } catch {
+            // Handle save failure
+            print(error)
+        }
+        
+        // reload employees
+        self.loadEmployees()
+    }
+    
+    func resetAll() {
+        // Reset all employees total hours and extra minutes to 0
+        for employee in self.employees {
+            employee.clockInTime = nil
+            employee.clockOutTime = nil
+            employee.totalHours = 0
+            employee.extraMinutes = 0
+            employee.clockingStatus = false
+        }
+        
+        // Save the data
         do {
             try self.context.save()
         } catch {

@@ -17,12 +17,13 @@ struct AvatarView: View {
         // a link to the clocking view
         NavigationLink(destination: EmployeeDetailView(employee: employee, coreDataApi: self.coreDataApi)) {
             VStack() {
-                safeImage(named: employee.firstName)
+                Image(uiImage: UIImage(data: (self.employee.avatar ?? UIImage(named: "default-avatar")!.jpegData(compressionQuality: 1.0))!)!)
                     .resizable()
-                    .scaledToFit()
+                    .aspectRatio(contentMode: .fill)
                     .clipShape(Circle())
                     .shadow(color: .primary, radius: 5)
                     .padding([.horizontal, .top], 7)
+                    .frame(width: 180, height: 180)
                 
                 Text(employee.firstName).lineLimit(1)
                 Text(employee.lastName).lineLimit(1)
@@ -30,5 +31,3 @@ struct AvatarView: View {
         }.buttonStyle(PlainButtonStyle())
     }
 }
-
-
